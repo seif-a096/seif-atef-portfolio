@@ -4,6 +4,11 @@ import type { MotionValue, Variants } from "framer-motion";
 import { FaGithub } from "react-icons/fa";
 import { GiLaurelCrown } from "react-icons/gi";
 
+const RESUME_DRIVE_VIEW_URL =
+  "https://drive.google.com/file/d/1L3n8zdgjDL4Tm3cr1uTHg9mE5enkSFd_/view?usp=sharing";
+const RESUME_DRIVE_DOWNLOAD_URL =
+  "https://drive.google.com/uc?export=download&id=1L3n8zdgjDL4Tm3cr1uTHg9mE5enkSFd_";
+
 type NavLink = {
   label: string;
   id: string;
@@ -161,6 +166,42 @@ export default function SiteHeader({
   onToggleMenu,
   onNavigate,
 }: SiteHeaderProps) {
+  const [isDownloadingResume, setIsDownloadingResume] = React.useState(false);
+  const [showDownloadPrompt, setShowDownloadPrompt] = React.useState(false);
+
+  const handleResumeDownload = React.useCallback(async () => {
+    if (isMenuOpen || isDownloadingResume) return;
+
+    setIsDownloadingResume(true);
+    const previewTab = window.open("about:blank", "_blank");
+
+    try {
+      // Keep a short loading state before navigating the new tab.
+      await new Promise((resolve) => window.setTimeout(resolve, 900));
+
+      if (previewTab) {
+        previewTab.location.href = RESUME_DRIVE_VIEW_URL;
+      } else {
+        window.open(RESUME_DRIVE_VIEW_URL, "_blank", "noopener,noreferrer");
+      }
+
+      setShowDownloadPrompt(true);
+    } catch {
+      window.open(RESUME_DRIVE_VIEW_URL, "_blank", "noopener,noreferrer");
+    } finally {
+      setIsDownloadingResume(false);
+    }
+  }, [isDownloadingResume, isMenuOpen]);
+
+  const handleResumeDownloadConfirm = React.useCallback(() => {
+    window.open(RESUME_DRIVE_DOWNLOAD_URL, "_blank", "noopener,noreferrer");
+    setShowDownloadPrompt(false);
+  }, []);
+
+  const handleResumeDownloadDismiss = React.useCallback(() => {
+    setShowDownloadPrompt(false);
+  }, []);
+
   return (
     <>
       <motion.header
@@ -178,10 +219,12 @@ export default function SiteHeader({
         </motion.div>
 
         <div className="header-actions">
-          <motion.a
-            className="resume-btn"
-            href="/Seif-Atef-Resume.pdf"
-            download
+          <motion.button
+            type="button"
+            className={`resume-btn ${isDownloadingResume ? "loading" : ""}`}
+            onClick={handleResumeDownload}
+            disabled={isMenuOpen || isDownloadingResume}
+            aria-busy={isDownloadingResume}
             style={{
               opacity: isMenuOpen ? 0 : 1,
               pointerEvents: isMenuOpen ? "none" : "auto",
@@ -201,8 +244,15 @@ export default function SiteHeader({
               <polyline points="7 10 12 15 17 10" />
               <line x1="12" y1="15" y2="3" />
             </svg>
-            RESUME
-          </motion.a>
+            {isDownloadingResume ? (
+              <>
+                <span className="resume-btn-spinner" aria-hidden="true" />
+                <span>Loading...</span>
+              </>
+            ) : (
+              "RESUME"
+            )}
+          </motion.button>
 
           <motion.button
             className={`nav-btn ${isMenuOpen ? "open" : ""} ${needsLightLines ? "light-lines" : ""}`}
@@ -221,6 +271,38 @@ export default function SiteHeader({
             </span>
           </motion.button>
         </div>
+
+        <AnimatePresence>
+          {showDownloadPrompt && !isMenuOpen && (
+            <motion.div
+              className="resume-download-prompt"
+              initial={{ opacity: 0, y: -8 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -8 }}
+              transition={{ duration: 0.2, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <p className="resume-download-prompt-text">
+                Resume opened. Download PDF as well?
+              </p>
+              <div className="resume-download-prompt-actions">
+                <button
+                  type="button"
+                  className="resume-download-prompt-btn primary"
+                  onClick={handleResumeDownloadConfirm}
+                >
+                  Download
+                </button>
+                <button
+                  type="button"
+                  className="resume-download-prompt-btn"
+                  onClick={handleResumeDownloadDismiss}
+                >
+                  Later
+                </button>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
       </motion.header>
 
       <AnimatePresence>

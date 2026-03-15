@@ -130,6 +130,98 @@
   transform: translateY(2px);
 }
 
+.resume-btn.loading {
+  text-transform: none;
+  letter-spacing: 0.02em;
+  background: #2a2a2d;
+  color: rgba(255, 255, 255, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.resume-btn-spinner {
+  width: 14px;
+  height: 14px;
+  border: 2px solid rgba(255, 255, 255, 0.35);
+  border-top-color: rgba(255, 255, 255, 0.95);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.resume-btn:disabled {
+  cursor: not-allowed;
+  opacity: 1;
+  transform: none;
+}
+
+.resume-btn:disabled:hover {
+  background: #2a2a2d;
+  color: rgba(255, 255, 255, 0.92);
+  transform: none;
+}
+
+.resume-btn:disabled svg {
+  transform: none;
+}
+
+.resume-download-prompt {
+  position: absolute;
+  top: 78px;
+  right: 28px;
+  min-width: 270px;
+  max-width: min(360px, calc(100vw - 24px));
+  padding: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  background: rgba(12, 12, 13, 0.94);
+  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.35);
+  pointer-events: auto;
+}
+
+.resume-download-prompt-text {
+  margin: 0 0 10px;
+  color: rgba(255, 255, 255, 0.9);
+  font-family: "Mona Sans", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+}
+
+.resume-download-prompt-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.resume-download-prompt-btn {
+  height: 30px;
+  padding: 0 12px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.88);
+  font-family: "Mona Sans", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.resume-download-prompt-btn.primary {
+  background: #d2ff00;
+  border-color: #d2ff00;
+  color: #111112;
+}
+
+.resume-download-prompt-btn:not(.primary):hover {
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
 .nav-btn {
   width: 48px;
   height: 48px;
@@ -934,6 +1026,12 @@
     font-size: 14px;
     border-radius: 6px;
     gap: 6px;
+  }
+
+  .resume-download-prompt {
+    right: 16px;
+    top: 68px;
+    min-width: 220px;
   }
 
   .resume-btn svg {
