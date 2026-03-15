@@ -36,3 +36,5 @@ Thumbs.db
 lint_output.txt
 lint.json
 
+# models
+/public/models/
