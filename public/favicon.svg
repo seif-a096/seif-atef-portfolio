@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Seif portfolio favicon">
+	<defs>
+		<linearGradient id="bg" x1="8" y1="6" x2="56" y2="58" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#263018" />
+			<stop offset="1" stop-color="#11150b" />
+		</linearGradient>
+		<linearGradient id="screen" x1="16" y1="18" x2="48" y2="46" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#131a0d" />
+			<stop offset="1" stop-color="#0b0f08" />
+		</linearGradient>
+	</defs>
+
+	<!-- Board -->
+	<rect x="4" y="4" width="56" height="56" rx="14" fill="url(#bg)" stroke="#8fb600" stroke-width="2.2" />
+
+	<!-- Chip pins -->
+	<rect x="14" y="1" width="4" height="5" rx="1" fill="#8fb600" />
+	<rect x="23" y="1" width="4" height="5" rx="1" fill="#8fb600" />
+	<rect x="32" y="1" width="4" height="5" rx="1" fill="#8fb600" />
+	<rect x="41" y="1" width="4" height="5" rx="1" fill="#8fb600" />
+	<rect x="14" y="58" width="4" height="5" rx="1" fill="#8fb600" />
+	<rect x="23" y="58" width="4" height="5" rx="1" fill="#8fb600" />
+	<rect x="32" y="58" width="4" height="5" rx="1" fill="#8fb600" />
+	<rect x="41" y="58" width="4" height="5" rx="1" fill="#8fb600" />
+
+	<!-- Terminal window -->
+	<rect x="14" y="16" width="36" height="30" rx="6" fill="url(#screen)" stroke="#86ab00" stroke-width="1.5" />
+	<rect x="14" y="16" width="36" height="7" rx="6" fill="#1c2312" />
+	<circle cx="19" cy="19.5" r="1.2" fill="#ff5f57" />
+	<circle cx="22.5" cy="19.5" r="1.2" fill="#ffbd2e" />
+	<circle cx="26" cy="19.5" r="1.2" fill="#28c840" />
+
+	<!-- Code prompt -->
+	<path d="M27 27l-6 5 6 5" fill="none" stroke="#d2ff00" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round" />
+	<line x1="31" y1="37" x2="41" y2="37" stroke="#d2ff00" stroke-width="3.2" stroke-linecap="round" />
+
+	<!-- Subtle portfolio monogram detail -->
+	<circle cx="46" cy="47" r="4" fill="#0d1208" stroke="#95c000" stroke-width="1.2" />
+	<path d="M44.8 47h2.4M46 45.8v2.4" stroke="#d2ff00" stroke-width="1.1" stroke-linecap="round" />
+</svg>

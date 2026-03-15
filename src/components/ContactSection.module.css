@@ -1,0 +1,228 @@
+.contactRoot {
+  position: relative;
+  z-index: 11;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 80px 20px;
+  gap: 60px;
+}
+
+.contactHeader {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.contactTitle {
+  margin: 16px 0;
+}
+
+.fanDeck {
+  position: relative;
+  width: min(1000px, 100%);
+  height: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.centerPhoto {
+  position: relative;
+  z-index: 10;
+  width: 260px;
+  height: 364px;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+.centerPhotoImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.socialCard {
+  position: absolute;
+  width: 200px;
+  height: 275px;
+  border-radius: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  text-decoration: none;
+  cursor: pointer;
+  transform-origin: bottom center;
+}
+
+.socialPreview {
+  position: absolute;
+  bottom: calc(100% + 14px);
+  left: 50%;
+  transform: translateX(-50%);
+  width: 250px;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #121214;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 55px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  z-index: 40;
+}
+
+.previewChrome {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  background: #0d0e10;
+}
+
+.chromeDot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+}
+
+.previewUrl {
+  margin-left: 6px;
+  color: rgba(255, 255, 255, 0.45);
+  font-size: 10px;
+  font-family: "Mona Sans", "Helvetica Neue", sans-serif;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.previewBody {
+  width: 100%;
+  height: 150px;
+  background: #17181b;
+}
+
+.previewImg {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.previewFallback {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: "Mona Sans", "Helvetica Neue", sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.socialLabel {
+  color: white;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: "Mona Sans", "Helvetica Neue", sans-serif;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.contactFooter {
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 14px;
+  font-family: "Mona Sans", "Helvetica Neue", sans-serif;
+  letter-spacing: 1px;
+  text-align: center;
+  max-width: 400px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+@media (max-width: 1200px) {
+  .fanDeck {
+    width: min(860px, 100%);
+    height: 500px;
+  }
+
+  .socialCard {
+    width: 184px;
+    height: 255px;
+  }
+
+  .socialPreview {
+    width: 220px;
+  }
+}
+
+@media (max-width: 900px) {
+  .contactRoot {
+    padding: 56px 14px;
+    gap: 34px;
+  }
+
+  .fanDeck {
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(140px, 1fr));
+    justify-items: center;
+    align-items: start;
+    gap: 14px;
+  }
+
+  .centerPhoto {
+    width: min(320px, 90vw);
+    height: min(430px, 58vh);
+    grid-column: 1 / -1;
+    order: -1;
+    margin-bottom: 8px;
+  }
+
+  .socialCard {
+    position: relative;
+    width: min(220px, 42vw);
+    height: 180px;
+    border-radius: 12px;
+  }
+
+  .socialPreview {
+    display: none;
+  }
+
+  .socialLabel {
+    font-size: 11px;
+    letter-spacing: 1.2px;
+  }
+}
+
+@media (max-width: 520px) {
+  .fanDeck {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .socialCard {
+    width: min(310px, 90vw);
+    height: 84px;
+    flex-direction: row;
+    justify-content: flex-start;
+    padding: 0 18px;
+    gap: 14px;
+  }
+
+  .contactFooter {
+    font-size: 12px;
+    max-width: 92vw;
+  }
+}

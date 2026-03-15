@@ -1,0 +1,54 @@
+/* ─── Minimal Loading Screen ─────────────────────────────────── */
+.loader-root {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  background: #000000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  overflow: hidden;
+}
+
+.loader-label {
+  font-family: "Mona Sans", "Helvetica Neue", sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.28em;
+  color: rgba(255, 255, 255, 0.35);
+  text-transform: uppercase;
+  user-select: none;
+  transition: color 0.3s ease;
+}
+
+.loader-label.ready {
+  color: rgba(210, 255, 0, 0.7);
+}
+
+.loader-bar-wrap {
+  width: min(260px, 60vw);
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  position: relative;
+  overflow: hidden;
+}
+
+.loader-bar-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  height: 100%;
+  background: #d2ff00;
+  box-shadow: 0 0 8px rgba(210, 255, 0, 0.8);
+}
+
+.loader-flash {
+  position: absolute;
+  inset: 0;
+  background: #ffffff;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 10;
+}
