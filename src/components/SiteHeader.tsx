@@ -5,9 +5,9 @@ import { FaGithub } from "react-icons/fa";
 import { GiLaurelCrown } from "react-icons/gi";
 
 const RESUME_DRIVE_VIEW_URL =
-  "https://drive.google.com/file/d/1L3n8zdgjDL4Tm3cr1uTHg9mE5enkSFd_/view?usp=sharing";
+  "https://drive.google.com/file/d/1BOd9K_T2KEpPrLmFAxRJwQjLJbSddnKL/view?usp=sharing";
 const RESUME_DRIVE_DOWNLOAD_URL =
-  "https://drive.google.com/uc?export=download&id=1L3n8zdgjDL4Tm3cr1uTHg9mE5enkSFd_";
+  "https://drive.google.com/uc?export=download&id=1BOd9K_T2KEpPrLmFAxRJwQjLJbSddnKL";
 
 type NavLink = {
   label: string;
