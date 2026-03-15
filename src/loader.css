@@ -12,6 +12,72 @@
   overflow: hidden;
 }
 
+.loader-sound-toast {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  width: min(320px, calc(100vw - 32px));
+  padding: 14px 14px 12px;
+  border: 1px solid rgba(210, 255, 0, 0.28);
+  background: rgba(10, 10, 10, 0.92);
+  box-shadow: 0 14px 30px rgba(0, 0, 0, 0.35);
+  backdrop-filter: blur(10px);
+}
+
+.loader-sound-text {
+  margin: 0 0 12px;
+  color: rgba(255, 255, 255, 0.82);
+  font-family: "Mona Sans", "Helvetica Neue", sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  line-height: 1.45;
+}
+
+.loader-sound-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+}
+
+.loader-sound-btn {
+  min-width: 64px;
+  height: 34px;
+  padding: 0 14px;
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: 0;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.78);
+  font-family: "Mona Sans", "Helvetica Neue", sans-serif;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.loader-sound-btn:hover {
+  border-color: rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+}
+
+.loader-sound-btn-primary {
+  background: #d2ff00;
+  border-color: #d2ff00;
+  color: #111112;
+}
+
+.loader-sound-btn-primary:hover {
+  background: #e0ff52;
+  border-color: #e0ff52;
+  color: #111112;
+}
+
 .loader-label {
   font-family: "Mona Sans", "Helvetica Neue", sans-serif;
   font-size: 11px;
@@ -51,4 +117,26 @@
   opacity: 0;
   pointer-events: none;
   z-index: 10;
+}
+
+@media (max-width: 640px) {
+  .loader-sound-toast {
+    top: 16px;
+    right: 16px;
+    left: 16px;
+    width: auto;
+    padding: 12px;
+  }
+
+  .loader-sound-text {
+    font-size: 11px;
+    letter-spacing: 0.06em;
+  }
+
+  .loader-sound-btn {
+    min-width: 58px;
+    height: 32px;
+    padding: 0 12px;
+    font-size: 10px;
+  }
 }

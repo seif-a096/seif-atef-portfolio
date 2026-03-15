@@ -101,23 +101,36 @@ type Phase = "loading" | "ready" | "flash" | "exit";
 export default function LoadingScreen({ onDone }: { onDone: () => void }) {
   const [phase, setPhase] = React.useState<Phase>("loading");
   const [progress, setProgress] = React.useState(0);
+  const [soundPreference, setSoundPreference] = React.useState<
+    "pending" | "allowed" | "muted"
+  >("pending");
+
+  const handleAllowSound = React.useCallback(() => {
+    unlockAudio();
+    setSoundPreference("allowed");
+  }, []);
+
+  const handleMuteSound = React.useCallback(() => {
+    setSoundPreference("muted");
+  }, []);
 
   // Lock scrolling while the loader is visible
   React.useEffect(() => {
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
-    // Pre-unlock AudioContext on any user gesture so it's ready when we play
-    document.addEventListener("pointerdown", unlockAudio, { once: true });
-    document.addEventListener("keydown", unlockAudio, { once: true });
     return () => {
       document.body.style.overflow = prev;
-      document.removeEventListener("pointerdown", unlockAudio);
-      document.removeEventListener("keydown", unlockAudio);
     };
   }, []);
 
   React.useEffect(() => {
     let dead = false;
+
+    if (soundPreference === "pending") {
+      return () => {
+        dead = true;
+      };
+    }
 
     async function run() {
       // Fake progress tick until resources are ready
@@ -152,8 +165,10 @@ export default function LoadingScreen({ onDone }: { onDone: () => void }) {
       await new Promise((r) => setTimeout(r, 220));
       if (dead) return;
 
-      // Flash + sound
-      playStartupSound();
+      // Flash + optional sound
+      if (soundPreference === "allowed") {
+        playStartupSound();
+      }
       setPhase("flash");
       await new Promise((r) => setTimeout(r, 600));
       if (dead) return;
@@ -169,7 +184,7 @@ export default function LoadingScreen({ onDone }: { onDone: () => void }) {
     return () => {
       dead = true;
     };
-  }, [onDone]);
+  }, [onDone, soundPreference]);
 
   return (
     <AnimatePresence>
@@ -180,6 +195,34 @@ export default function LoadingScreen({ onDone }: { onDone: () => void }) {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.6, ease: [0.76, 0, 0.24, 1] }}
         >
+          {soundPreference === "pending" && (
+            <motion.div
+              className="loader-sound-toast"
+              initial={{ opacity: 0, y: 12 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: 8 }}
+              transition={{ duration: 0.24, ease: [0.22, 1, 0.36, 1] }}
+            >
+              <p className="loader-sound-text">Allow startup sound?</p>
+              <div className="loader-sound-actions">
+                <button
+                  type="button"
+                  className="loader-sound-btn loader-sound-btn-primary"
+                  onClick={handleAllowSound}
+                >
+                  OK
+                </button>
+                <button
+                  type="button"
+                  className="loader-sound-btn"
+                  onClick={handleMuteSound}
+                >
+                  No
+                </button>
+              </div>
+            </motion.div>
+          )}
+
           {/* Progress bar */}
           <div className="loader-bar-wrap">
             <motion.div
@@ -193,7 +236,11 @@ export default function LoadingScreen({ onDone }: { onDone: () => void }) {
           <div
             className={`loader-label${phase === "ready" || phase === "flash" ? " ready" : ""}`}
           >
-            {phase === "ready" || phase === "flash" ? "Ready" : "Initializing"}
+            {soundPreference === "pending"
+              ? "Awaiting Sound Choice"
+              : phase === "ready" || phase === "flash"
+                ? "Ready"
+                : "Initializing"}
           </div>
 
           {/* White flash overlay */}
