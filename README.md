@@ -28,7 +28,6 @@ The site combines smooth section choreography, animated UI layers, a custom reve
 ![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?style=for-the-badge&logo=typescript&logoColor=white)
 ![Vite](https://img.shields.io/badge/Vite-646CFF?style=for-the-badge&logo=vite&logoColor=white)
 ![Framer Motion](https://img.shields.io/badge/Framer%20Motion-111827?style=for-the-badge&logo=framer&logoColor=white)
-![React Router](https://img.shields.io/badge/React%20Router-CA4245?style=for-the-badge&logo=reactrouter&logoColor=white)
 ![React Icons](https://img.shields.io/badge/React%20Icons-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 
 ### WebGL and 3D
@@ -66,7 +65,6 @@ The site combines smooth section choreography, animated UI layers, a custom reve
 | ------------------ | ------------------------------------------------------------- |
 | react              | UI rendering and component architecture.                      |
 | react-dom          | DOM integration for React rendering.                          |
-| react-router-dom   | Routing utilities for navigation patterns when needed.        |
 | framer-motion      | Motion orchestration, transitions, and animated interactions. |
 | three              | Core 3D engine and rendering primitives.                      |
 | @react-three/fiber | React renderer for Three.js scenes.                           |
